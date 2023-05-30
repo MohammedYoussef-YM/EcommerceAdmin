@@ -1,15 +1,16 @@
 import 'package:admin/core/class/statusrequest.dart';
 import 'package:admin/core/constant/routes.dart';
 import 'package:admin/core/functions/handlingData.dart';
-import 'package:admin/data/datasource/remote/categories_data.dart';
-import 'package:admin/data/model/categoriesmodel.dart';
+import 'package:admin/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
 
-class CategoriesController extends GetxController {
+import '../../data/datasource/remote/items_data.dart';
 
-  CategoriesData categoriesData = CategoriesData(Get.find());
+class ItemsController extends GetxController {
 
-  List<CategoriesModel> data = [];
+  ItemsData itemsData = ItemsData(Get.find());
+
+  List<ItemsModel> data = [];
 
   late StatusRequest statusRequest;
 
@@ -17,13 +18,13 @@ class CategoriesController extends GetxController {
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await categoriesData.get();
+    var response = await itemsData.get();
     print("=======================  dsdsad    $response");
     statusRequest = handlingData(response);
     if(StatusRequest.success == statusRequest){
       if(response['status'] == "success"){
         List listdata = response['data'];
-        data.addAll(listdata.map((e) => CategoriesModel.fromJson(e)));
+        data.addAll(listdata.map((e) => ItemsModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -35,12 +36,12 @@ class CategoriesController extends GetxController {
     Get.offAllNamed(AppRoute.homepage);
     return Future.value(false);
   }
-  goToPageEdit(CategoriesModel categoriesModel){
-    Get.toNamed(AppRoute.categoryedit,arguments: {"categoriesModel":categoriesModel});
+  goToPageEdit(ItemsModel itemsModel){
+    Get.toNamed(AppRoute.itemsedit,arguments: {"itemsModel":itemsModel});
   }
-  deleteCategories(String id, String imagename){
-   categoriesData.delete({"id":id,"imagename":imagename});
-   data.removeWhere((element) => element.categoriesId == id);
+  deleteitems(String id, String imagename){
+   itemsData.delete({"id":id,"imagename":imagename});
+   data.removeWhere((element) => element.itemsId == id);
    update();
   }
 

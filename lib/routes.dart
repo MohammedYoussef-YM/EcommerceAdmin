@@ -4,9 +4,13 @@ import 'package:admin/view/screen/auth/login.dart';
 import 'package:admin/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:admin/view/screen/auth/forgetpassword/success_resetpassword.dart';
 import 'package:admin/view/screen/auth/forgetpassword/verifycode.dart';
+import 'package:admin/view/screen/categories/edit.dart';
 import 'package:admin/view/screen/categories/view.dart';
 import 'package:admin/view/screen/categories/add.dart';
 import 'package:admin/view/screen/home.dart';
+import 'package:admin/view/screen/items/add.dart';
+import 'package:admin/view/screen/items/edit.dart';
+import 'package:admin/view/screen/items/view.dart';
 import 'package:admin/view/screen/orders/archive.dart';
 import 'package:admin/view/screen/orders/detials.dart';
 import 'package:get/get.dart';
@@ -26,5 +30,9 @@ List<GetPage<dynamic>>? routes= [
   // CategoriesView
   GetPage(name: AppRoute.categoryview, page: () => const CategoriesView()),
   GetPage(name: AppRoute.categoryadd, page: () => const CategoriesAdd()),
-
+  GetPage(name: AppRoute.categoryedit, page: () => const CategoriesEdit()),
+  // Items
+  GetPage(name: AppRoute.itemsview, page: () => const ItemsView()),
+  GetPage(name: AppRoute.itemsadd, page: () => const ItemsAdd()),
+  GetPage(name: AppRoute.itemsedit, page: () => const ItemsEdit()),
 ];

@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3,mainAxisExtent: 150),
           children: [
             CardAdmin(url: AppImageAsset.logo, title: 'Categories',onClick: (){Get.toNamed(AppRoute.categoryview);},),
-            CardAdmin(url: AppImageAsset.delivery, title: 'Notification',onClick: (){},),
+            CardAdmin(url: AppImageAsset.delivery, title: 'Items',onClick: (){Get.toNamed(AppRoute.itemsview);},),
             CardAdmin(url: AppImageAsset.drivethru, title: 'Notification',onClick: (){},),
             CardAdmin(url: AppImageAsset.onBoardingImageTwo, title: 'Notification',onClick: (){},),
             CardAdmin(url: AppImageAsset.onBoardingImageThree, title: 'Notification',onClick: (){},),

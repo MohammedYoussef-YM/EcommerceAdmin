@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
-      title: 'Admin ECommerce',
+      title: 'Admin Ecommerce',
       locale: controller.language,
       theme: controller.appTheme,
       initialBinding: Intialbindings(),

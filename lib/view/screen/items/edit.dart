@@ -1,4 +1,3 @@
-import 'package:admin/controller/categories/add_controller.dart';
 import 'package:admin/core/class/handlingdataview.dart';
 import 'package:admin/core/constant/color.dart';
 import 'package:admin/core/functions/uploadfile.dart';
@@ -9,15 +8,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class CategoriesAdd extends StatelessWidget {
-  const CategoriesAdd({Key? key}) : super(key: key);
+import '../../../controller/items/edit_controller.dart';
+
+class ItemsEdit extends StatelessWidget {
+  const ItemsEdit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CategoriesAddController controller = Get.put(CategoriesAddController());
+    ItemsditController controller = Get.put(ItemsditController());
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Category"),),
-      body: GetBuilder<CategoriesAddController>( 
+      appBar: AppBar(title: const Text("Edit Items"),),
+      body: GetBuilder<ItemsditController>( 
         builder: (controller)=>
    HandlingDataView(statusRequest: controller.statusRequest!, widget:  Container(
         padding: EdgeInsets.all(10),
@@ -25,12 +26,12 @@ class CategoriesAdd extends StatelessWidget {
           key: controller.formState,
           child: ListView(children: [
             CustomTextFieldAuthGlobal(
-                hintText: "Categories name", labeltext: "Categories name",
+                hintText: "Items name", labeltext: "Items name",
                 iconDate: Icons.category, mycontroller: controller.name, valid: (val){
               return validInput(val!, 1, 30, "");
             }, isNumber: false),
             CustomTextFieldAuthGlobal(
-                hintText: "Categories name (arabic)", labeltext: "Categories name (arabic)",
+                hintText: "Items name (arabic)", labeltext: "Items name (arabic)",
                 iconDate: Icons.category, mycontroller: controller.namear, valid: (val){
               return validInput(val!, 1, 30, "");
             }, isNumber: false),
@@ -41,11 +42,11 @@ class CategoriesAdd extends StatelessWidget {
                     textColor: AppColor.secoundColor,
                     onPressed: (){
                       controller.chooseImage();
-                    },child: Text("Choose category image"))),
+                    },child: Text("Choose Items image"))),
             if(controller.file != null )
               SvgPicture.file(controller.file!,height: 100,),
-            CustomButtonLang(textbutton: 'add',onPressed: (){
-              controller.addData();
+            CustomButtonLang(textbutton: 'edit',onPressed: (){
+              controller.editData();
             },)
           ],),
         ),),)

@@ -1,4 +1,5 @@
 import 'package:admin/controller/categories/add_controller.dart';
+import 'package:admin/controller/categories/edit_controller.dart';
 import 'package:admin/core/class/handlingdataview.dart';
 import 'package:admin/core/constant/color.dart';
 import 'package:admin/core/functions/uploadfile.dart';
@@ -9,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class CategoriesAdd extends StatelessWidget {
-  const CategoriesAdd({Key? key}) : super(key: key);
+class CategoriesEdit extends StatelessWidget {
+  const CategoriesEdit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CategoriesAddController controller = Get.put(CategoriesAddController());
+    CategoriesEditController controller = Get.put(CategoriesEditController());
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Category"),),
-      body: GetBuilder<CategoriesAddController>( 
+      appBar: AppBar(title: const Text("Edit Category"),),
+      body: GetBuilder<CategoriesEditController>( 
         builder: (controller)=>
    HandlingDataView(statusRequest: controller.statusRequest!, widget:  Container(
         padding: EdgeInsets.all(10),
@@ -44,8 +45,8 @@ class CategoriesAdd extends StatelessWidget {
                     },child: Text("Choose category image"))),
             if(controller.file != null )
               SvgPicture.file(controller.file!,height: 100,),
-            CustomButtonLang(textbutton: 'add',onPressed: (){
-              controller.addData();
+            CustomButtonLang(textbutton: 'edit',onPressed: (){
+              controller.editData();
             },)
           ],),
         ),),)

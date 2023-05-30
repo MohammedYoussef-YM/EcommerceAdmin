@@ -1,25 +1,26 @@
-import 'package:admin/controller/categories/view_controller.dart';
+import 'package:admin/controller/items/view_controller.dart';
 import 'package:admin/core/class/handlingdataview.dart';
 import 'package:admin/core/constant/routes.dart';
 import 'package:admin/linkurl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CategoriesView extends StatelessWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+class ItemsView extends StatelessWidget {
+  const ItemsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesController());
+    Get.put(ItemsController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Categories"),
+        title: const Text("Items"),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Get.toNamed(AppRoute.categoryadd);
+        Get.toNamed(AppRoute.itemsadd);
       },child: Icon(Icons.add),),
-      body: GetBuilder<CategoriesController>(
+      body: GetBuilder<ItemsController>(
           builder: (controller) => HandlingDataRequest(
             statusRequest: controller.statusRequest,
             widget: WillPopScope(
@@ -39,22 +40,25 @@ class CategoriesView extends StatelessWidget {
                               Expanded(
                                 flex: 2,
                                 child: Container(
-                                  padding: EdgeInsets.all(4),
-                                  child: SvgPicture.network(
-                                      "${AppLink.imageCategories}/${controller.data[index].categoriesImage}",height:80),
+                                  padding: const EdgeInsets.all(4),
+                                  child: CachedNetworkImage(
+                      // imageUrl: '${AppLink.imageItems}/${itemsModel.itemsImage!}',
+                                     height:80,
+                                     imageUrl: "${AppLink.imageItems}/${controller.data[index].itemsImage!}",
+                                      ),
                                 ),
                               ),
                               Expanded(
                                 flex: 3,
                                 child: ListTile(
                                   trailing: IconButton(icon: Icon(Icons.delete_outline),onPressed:(){
-                                   Get.defaultDialog(title: "تحذير",middleText: "سوف يتم حذف القسم هل انت متاكد؟",onCancel: (){},onConfirm: (){
-                                    controller.deleteCategories(controller.data[index].categoriesId!, controller.data[index].categoriesImage!);
+                                   Get.defaultDialog(title: "تحذير",middleText: "سوف يتم حذف المنتج هل انت متاكد؟",onCancel: (){},onConfirm: (){
+                                    controller.deleteitems(controller.data[index].itemsId!, controller.data[index].itemsImage!);
                                     Get.back();
                                    });
                                   },),
-                                  subtitle: Text(controller.data[index].categoriesDatetime!),
-                                  title: Text(controller.data[index].categoriesName!),
+                                  subtitle: Text(controller.data[index].itemsDate!),
+                                  title: Text(controller.data[index].itemsName!),
                                 ),
                               ),
                             ],

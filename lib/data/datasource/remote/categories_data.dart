@@ -18,8 +18,14 @@ class CategoriesData {
     var response = await crud.postData(AppLink.deletecategory, data);
     return response.fold((l) => l, (r) => r);
   }
-  edit(Map data) async {
-    var response = await crud.postData(AppLink.editcategory, data);
+  edit(Map data,[File? file]) async {
+    var response ;
+    if(file == null){
+     response = await crud.postData(AppLink.editcategory, data);
+   
+    } else {
+     response = await crud.addRequestWithImageOne(AppLink.editcategory, data,file);
+    }
     return response.fold((l) => l, (r) => r);
   }
 }
